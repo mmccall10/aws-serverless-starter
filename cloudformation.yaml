@@ -1,0 +1,30 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda Code with Api Gateway invoke permissions
+Resources:
+
+  SERVERLESS_LAMBDA_FUNCTION_NAMEApiPermission:
+      Type: AWS::Lambda::Permission
+      Properties:
+        Action: lambda:InvokeFunction
+        FunctionName: !Ref DeleteShopLogoFunction
+        Principal: apigateway.amazonaws.com
+
+
+  SERVERLESS_LAMBDA_FUNCTION_NAMEFunction:
+    Type: AWS::Serverless::Function
+        Properties:
+          FunctionName: SERVERLESS_LAMBDA_FUNCTION_NAME
+          Handler: index.handler
+          Runtime: nodejs6.10
+          CodeUri: ./
+          Description: Delete Shop Logo
+
+Outputs:
+  Outputs:
+    SERVERLESS_LAMBDA_FUNCTION_NAMEFunctionArn:
+      Description: SERVERLESS_LAMBDA_FUNCTION_NAME Function Arn
+      Value: !GetAtt SERVERLESS_LAMBDA_FUNCTION_NAMEFunction.Arn
+      Export:
+        Name: !Sub ${AWS::StackName}-SERVERLESS_LAMBDA_FUNCTION_NAMEFunctionArn
