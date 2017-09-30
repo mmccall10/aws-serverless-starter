@@ -8,18 +8,18 @@ Resources:
       Type: AWS::Lambda::Permission
       Properties:
         Action: lambda:InvokeFunction
-        FunctionName: !Ref DeleteShopLogoFunction
+        FunctionName: !Ref SERVERLESS_LAMBDA_FUNCTION_NAMEFunction
         Principal: apigateway.amazonaws.com
 
 
   SERVERLESS_LAMBDA_FUNCTION_NAMEFunction:
     Type: AWS::Serverless::Function
-        Properties:
-          FunctionName: SERVERLESS_LAMBDA_FUNCTION_NAME
-          Handler: index.handler
-          Runtime: nodejs6.10
-          CodeUri: ./
-          Description: Delete Shop Logo
+    Properties:
+      FunctionName: SERVERLESS_LAMBDA_FUNCTION_NAME
+      Handler: lambda.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Description: Description of lambda
 
 Outputs:
   Outputs:
